@@ -18,7 +18,7 @@ class Vehicle(models.Model):
         ESSENCE = 'ESSENCE'
         DIESEL = 'DIESEL'
 
-    description = models.TextField
+    description = models.TextField(default="")
     number = models.CharField(
         max_length=9,
         validators=[

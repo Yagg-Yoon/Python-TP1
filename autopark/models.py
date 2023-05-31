@@ -34,6 +34,7 @@ class Vehicle(models.Model):
         default=VehicleType.ESSENCE
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.number

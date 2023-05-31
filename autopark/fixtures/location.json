@@ -1,0 +1,23 @@
+[
+{
+  "model": "autopark.location",
+  "pk": 1,
+  "fields": {
+    "label": "Parking 1"
+  }
+},
+{
+  "model": "autopark.location",
+  "pk": 2,
+  "fields": {
+    "label": "Parking 2"
+  }
+},
+{
+  "model": "autopark.location",
+  "pk": 3,
+  "fields": {
+    "label": "Parking 3"
+  }
+}
+]

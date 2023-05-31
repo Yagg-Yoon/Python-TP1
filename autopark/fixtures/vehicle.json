@@ -1,0 +1,122 @@
+[
+{
+  "model": "autopark.vehicle",
+  "pk": 1,
+  "fields": {
+    "number": "AA-001-BB",
+    "vehicle_type": "ESSENCE",
+    "created_at": "2023-05-31T13:37:28.570Z",
+    "location": 1
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 2,
+  "fields": {
+    "number": "BB-002-CC",
+    "vehicle_type": "DIESEL",
+    "created_at": "2023-05-31T13:37:40.520Z",
+    "location": 1
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 3,
+  "fields": {
+    "number": "CC-003-DD",
+    "vehicle_type": "DIESEL",
+    "created_at": "2023-05-31T13:37:55.183Z",
+    "location": 1
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 4,
+  "fields": {
+    "number": "DD-004-EE",
+    "vehicle_type": "ELECTRIQUE",
+    "created_at": "2023-05-31T13:38:07.758Z",
+    "location": 2
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 5,
+  "fields": {
+    "number": "EE-005-FF",
+    "vehicle_type": "ELECTRIQUE",
+    "created_at": "2023-05-31T13:38:25.609Z",
+    "location": 2
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 6,
+  "fields": {
+    "number": "FF-006-GG",
+    "vehicle_type": "ELECTRIQUE",
+    "created_at": "2023-05-31T13:38:38.902Z",
+    "location": 2
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 7,
+  "fields": {
+    "number": "GG-007-HH",
+    "vehicle_type": "DIESEL",
+    "created_at": "2023-05-31T13:38:54.678Z",
+    "location": 3
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 8,
+  "fields": {
+    "number": "HH-007-II",
+    "vehicle_type": "ESSENCE",
+    "created_at": "2023-05-31T13:39:16.170Z",
+    "location": 3
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 9,
+  "fields": {
+    "number": "II-008-JJ",
+    "vehicle_type": "ESSENCE",
+    "created_at": "2023-05-31T13:39:29.027Z",
+    "location": 3
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 10,
+  "fields": {
+    "number": "JJ-009-KK",
+    "vehicle_type": "ESSENCE",
+    "created_at": "2023-05-31T13:39:51.383Z",
+    "location": 1
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 11,
+  "fields": {
+    "number": "KK-010-LL",
+    "vehicle_type": "ELECTRIQUE",
+    "created_at": "2023-05-31T13:40:02.964Z",
+    "location": 2
+  }
+},
+{
+  "model": "autopark.vehicle",
+  "pk": 12,
+  "fields": {
+    "number": "LL-011-MM",
+    "vehicle_type": "ESSENCE",
+    "created_at": "2023-05-31T13:40:15.144Z",
+    "location": 3
+  }
+}
+]

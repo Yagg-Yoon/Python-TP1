@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
+import datetime
 
 class AllListView(LoginRequiredMixin, ListView):
     model = Vehicle
@@ -56,7 +57,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
     model = Booking
     form_class = BookingForm
     template_name = 'booking_form.html'
-    success_url = reverse_lazy('booking_list')
+    success_url = reverse_lazy('booking_all')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -68,3 +69,10 @@ class BookingListView(LoginRequiredMixin, ListView):
     context_object_name = 'bookings'
     ordering = ['booking_from']
 
+class BookingDeleteView(LoginRequiredMixin, DeleteView):
+    model = Booking
+    template_name = 'booking_delete.html'
+    success_url = reverse_lazy('booking_all')
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

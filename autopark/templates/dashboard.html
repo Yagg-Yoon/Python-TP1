@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>This is a dashboard</p>
+  <h2>Bienvenue sur la version beta de Autopark</h1>
+  <p>Vos réservations et la liste des véhicules du parc seront bientôt visibles ici.</p>
+  <p><a href="{% url 'all_vehicles' %}">Voir les véhicules</a></p>
+  <p><a href="{% url 'booking_all' %}">Voir les réservations</a></p>
 {% endblock %}

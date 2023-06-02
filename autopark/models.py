@@ -46,4 +46,4 @@ class Booking(models.Model):
     booking_from = models.DateTimeField()
     booking_to = models.DateTimeField()
     comments = models.TextField(blank=True, null=True)
-    approved = models.BooleanField(null=True, default=False)
+    approved = models.BooleanField(null=True)

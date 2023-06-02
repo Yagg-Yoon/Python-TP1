@@ -18,22 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from autopark.views import AllListView, VehicleDetailView, VehicleCreateView, LoginFormView, DashboardView, BookingCreateView
 from autopark.views import UserCreateView, UserDeleteView, CustomPasswordChangeView, CustomPasswordChangeDoneView
-from autopark.views import BookingListView
+from autopark.views import BookingListView, BookingDeleteView
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("autopark/all", AllListView.as_view()),
+    path("autopark/all", AllListView.as_view(), name='all_vehicles'),
     path("autopark/<int:pk>/details", VehicleDetailView.as_view(), name="vehicle_details"),
     path("autopark/create", VehicleCreateView.as_view(), name="add_vehicle"),
     path("", DashboardView.as_view()),
-    path("accounts/login", LoginFormView.as_view()),
+    path("accounts/login", LoginFormView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', UserCreateView.as_view(), name='register'),
     path('accounts/delete/', UserDeleteView.as_view(), name='delete_account'),
     path('accounts/password/change/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('accounts/password/change/done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('booking/new', BookingCreateView.as_view()),
-    path('booking/all', BookingListView.as_view())
+    path('booking/new', BookingCreateView.as_view(), name='booking_new'),
+    path('booking/all', BookingListView.as_view(), name='booking_all'),
+    path('booking/<int:pk>/delete/', BookingDeleteView.as_view(), name='booking_delete')
 ]

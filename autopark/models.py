@@ -1,4 +1,5 @@
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -38,3 +39,11 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return self.number
+    
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    booking_from = models.DateTimeField()
+    booking_to = models.DateTimeField()
+    comments = models.TextField(blank=True, null=True)
+    approved = models.BooleanField(null=True, default=False)

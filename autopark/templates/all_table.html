@@ -1,24 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <a href="{% url 'add_vehicle' %}">Créer un véhicule</a>
 <table>
     <thead>
       <tr>
         <th>Immatriculation</th>
+        <th>Type</th>
         <th>Emplacement</th>
-        <th>Details</th>
+        <th>Description</th>
+        <th>Détails</th>
       </tr>
     </thead>
     <tbody>
       {% for vehicle in table_data %}
         <tr>
           <td>{{ vehicle.number }}</td>
+          <td>{{ vehicle.vehicle_type }}</td>
           <td>{{ vehicle.location }}</td>
-          <td><a href="{% url 'vehicle_details' vehicle.id %}">Details</a></td>
+          <td>{{ vehicle.description }}</td>
+          <td><a href="{% url 'vehicle_details' vehicle.id %}">Détails</a></td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="2">Pas de véhicule</td>
+          <td colspan="5">Pas de véhicule</td>
         </tr>
       {% endfor %}
     </tbody>
-  </table>
+</table>
+{% endblock %}
   

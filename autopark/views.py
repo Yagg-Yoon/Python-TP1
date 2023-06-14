@@ -16,6 +16,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
+from autopark.filters import VehicleFilter
+from rest_framework import filters
 from django.urls import reverse_lazy
 
 class AllListView(LoginRequiredMixin, ListView):
@@ -90,6 +93,9 @@ class VehicleViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_class = VehicleFilter
+    ordering_fields = ['number', 'vehicle_type', 'created_at']
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

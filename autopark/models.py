@@ -41,6 +41,9 @@ class Vehicle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
 
+    last_maintenance_at = models.DateTimeField(null=True, blank=True)
+    next_check_at = models.DateTimeField(null=True, blank=True)
+
     def __str__(self):
         return self.number
     

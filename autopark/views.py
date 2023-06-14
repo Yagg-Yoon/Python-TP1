@@ -2,13 +2,21 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, DeleteView
 from django.contrib.auth.views import LoginView
-from autopark.models import Vehicle, Booking
+from autopark.models import Vehicle, Booking, Location
 from autopark.forms import VehicleForm, BookingForm
+from rest_framework import viewsets
+from autopark.models import Vehicle
+from autopark.serializers import VehicleSerializer, LocationSerializer
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from django.contrib.auth.models import User
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
+from rest_framework.views import APIView
 from django.urls import reverse_lazy
-import datetime
 
 class AllListView(LoginRequiredMixin, ListView):
     model = Vehicle
@@ -76,3 +84,27 @@ class BookingDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+class VehicleViewSet(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = Vehicle.objects.all()
+    serializer_class = VehicleSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        try:
+            serializer.is_valid(raise_exception=True)
+        except ValidationError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+class LocationListView(APIView):
+    def get(self, request):
+        locations = Location.objects.all()
+        serializer = LocationSerializer(locations, many=True)
+        return Response(serializer.data)

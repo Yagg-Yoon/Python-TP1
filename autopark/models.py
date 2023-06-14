@@ -1,5 +1,9 @@
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 from django.db import models
 
 # Create your models here.
@@ -47,3 +51,8 @@ class Booking(models.Model):
     booking_to = models.DateTimeField()
     comments = models.TextField(blank=True, null=True)
     approved = models.BooleanField(null=True)
+
+@receiver(post_save, sender=get_user_model())
+def create_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.get_or_create(user=instance)

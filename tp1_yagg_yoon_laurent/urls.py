@@ -18,8 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from autopark.views import AllListView, VehicleDetailView, VehicleCreateView, LoginFormView, DashboardView, BookingCreateView
 from autopark.views import UserCreateView, UserDeleteView, CustomPasswordChangeView, CustomPasswordChangeDoneView
-from autopark.views import BookingListView, BookingDeleteView
+from autopark.views import BookingListView, BookingDeleteView, VehicleViewSet, LocationListView
 from django.contrib.auth.views import LogoutView
+from rest_framework.authtoken import views
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'vehicle', VehicleViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -36,5 +41,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('booking/new', BookingCreateView.as_view(), name='booking_new'),
     path('booking/all', BookingListView.as_view(), name='booking_all'),
-    path('booking/<int:pk>/delete/', BookingDeleteView.as_view(), name='booking_delete')
+    path('booking/<int:pk>/delete/', BookingDeleteView.as_view(), name='booking_delete'),
+    path('api/location/', LocationListView.as_view()),
+    path('auth-token/', views.obtain_auth_token),
+    path('api/', include(router.urls))
 ]
